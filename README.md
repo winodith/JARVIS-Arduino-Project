@@ -4,10 +4,10 @@
 This project is a smart home automation system called JARVIS (Just A Rather Very Intelligent System) using Arduino. It allows you to control basic home appliances like lights and fans through **voice commands** using Bluetooth, as well as monitor **soil moisture levels** and **temperature/humidity**. The fan automatically adjusts based on room temperature, and the soil moisture sensor provides visual feedback through LEDs indicating the soil condition.
 
 ## Features
-- **Voice Control:** Control lights and fan using a Bluetooth module and a smartphone app.
+- **Voice Control:** Control lights and fan using voice commands sent via Bluetooth from a smartphone app.
 - **Automatic Fan Control:** Adjust fan speed automatically based on the room's temperature.
 - **Soil Moisture Monitoring:** Use a soil moisture sensor with LED indicators to check soil moisture levels (Red for moist, Green for dry).
-  
+
 ## Components Required
 1. **Arduino UNO** - Main microcontroller for the project.
 2. **Bluetooth Module (HC-05 or HC-06)** - To connect the smartphone with Arduino.
@@ -21,7 +21,7 @@ This project is a smart home automation system called JARVIS (Just A Rather Very
 
 ## How It Works
 1. **Voice Control:**
-   - You can control lights and fan using simple voice commands sent via Bluetooth from your smartphone.
+   - Control lights and fan using voice commands sent from your smartphone to the Arduino via Bluetooth.
    - Commands supported:
      - "TURN ON LIGHT" → Turns on the light.
      - "TURN OFF LIGHT" → Turns off the light.
@@ -30,11 +30,11 @@ This project is a smart home automation system called JARVIS (Just A Rather Very
 
 2. **Automatic Fan Control:**
    - The fan is automatically turned on if the room temperature exceeds 30°C, and it turns off if the temperature falls below that threshold.
-   
+
 3. **Soil Moisture Monitoring:**
    - The soil moisture sensor measures the moisture in the soil.
    - If the soil is dry, the green LED lights up. If the soil is moist, the red LED lights up.
-   
+
 ## Circuit Diagram
 Here's how to connect the components:
 
@@ -92,17 +92,43 @@ You can find the full circuit diagram in the `circuit_diagram.png` file in this 
    - **iOS**: [Bluetooth Terminal](https://apps.apple.com/us/app/bluetooth-terminal/id1217001123)
 2. Pair your smartphone with the Bluetooth module (HC-05/HC-06). Default pairing password is usually `1234` or `0000`.
 3. Open the Bluetooth serial app and connect to your Bluetooth module.
-4. Once connected, use the app to send the voice commands ("TURN ON LIGHT", "TURN OFF FAN", etc.) as text commands.
+4. Once connected, use the app to send text commands such as "TURN ON LIGHT" or "TURN OFF FAN".
 
-### **Step 4: Test the Project**
-1. Once the code is uploaded and the Bluetooth connection is established, test the voice commands using the Bluetooth app on your smartphone.
-   - Type or speak the command, and the corresponding action should take place (e.g., light turns on/off).
-2. Check the soil moisture sensor by inserting it into the soil and observing the LEDs.
+### **Step 4: Voice Control Setup**
+
+#### **For Android Users:**
+1. **Install Tasker and AutoBluetooth Apps:**
+   - **Tasker:** [Tasker](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm)
+   - **AutoBluetooth:** [AutoBluetooth](https://play.google.com/store/apps/details?id=com.joaomgcd.autobluetooth)
+   
+2. **Configure Tasker for Voice Commands:**
+   - Open Tasker and create a new profile for voice commands.
+   - Choose the “Voice” option and set up the command phrases (e.g., "Turn on the light", "Turn off the fan").
+   - Create tasks in Tasker that send Bluetooth text commands when voice commands are recognized.
+
+3. **Configure AutoBluetooth:**
+   - Open AutoBluetooth and configure it to automatically connect to your Bluetooth module when in range.
+
+#### **For iOS Users:**
+1. **Set Up Siri Shortcuts:**
+   - Open the Shortcuts app on your iPhone.
+   - Create new shortcuts for each command, such as turning on the light or fan.
+   - Use the "Send Bluetooth Command" action to send text commands to the Arduino via Bluetooth.
+
+2. **Use Siri to Trigger Commands:**
+   - Once shortcuts are set up, you can activate them using Siri with your chosen voice commands.
+
+### **Step 5: Test the Project**
+1. Test the voice commands using your configured voice assistant.
+   - For Android, speak the commands you've set up in Tasker.
+   - For iOS, use Siri to activate your shortcuts.
+2. Verify that the corresponding actions (e.g., light turns on/off, fan adjusts) occur as expected.
+3. Check the soil moisture sensor by inserting it into the soil and observing the LEDs.
    - If the soil is dry, the green LED will light up. If the soil is moist, the red LED will light up.
-3. Monitor the temperature and humidity in the serial monitor, and see the fan automatically turn on if the temperature is above 30°C.
+4. Monitor the temperature and humidity in the serial monitor and ensure the fan automatically adjusts based on the temperature.
 
-### **Step 5: Modifications (Optional)**
-- You can modify the voice commands or sensor thresholds in the Arduino code to suit your needs.
+### **Step 6: Modifications (Optional)**
+- Modify the voice commands or sensor thresholds in the Arduino code as needed.
 - Add more relays to control additional appliances.
 - Use a different temperature sensor (e.g., DHT22) for more accuracy.
 
